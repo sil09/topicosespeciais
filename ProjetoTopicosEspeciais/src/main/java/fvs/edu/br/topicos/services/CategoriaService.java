@@ -1,6 +1,5 @@
 package fvs.edu.br.topicos.services;
 
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ public class CategoriaService {
 		Optional<Categoria> obj = repositorio.findById(id);
 		
 		return obj.orElse(null);
-		
 	}
-	
-	
 
 }
