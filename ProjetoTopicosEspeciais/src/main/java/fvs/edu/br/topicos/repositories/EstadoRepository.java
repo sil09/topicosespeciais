@@ -7,5 +7,5 @@ import fvs.edu.br.topicos.domain.Estado;
 
 @Repository
 public interface EstadoRepository extends JpaRepository<Estado, Integer> {
-	
+
 }

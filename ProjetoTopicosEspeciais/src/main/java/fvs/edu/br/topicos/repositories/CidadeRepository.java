@@ -7,5 +7,5 @@ import fvs.edu.br.topicos.domain.Cidade;
 
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Integer> {
-	
+
 }
