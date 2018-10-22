@@ -14,37 +14,63 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import fvs.edu.br.topicos.enums.TipoCliente;
 
-@Entity
-public class Cliente implements Serializable {
-	private static final long serialVersionUID = 1L;
 
+@Entity
+public class Cliente implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String name;
+	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private TipoCliente tipo;
-
-	@OneToMany
-	private List<Endereco> endreco = new ArrayList<>();
-
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Endereco> endereco = new ArrayList<>();
+	
 	@ElementCollection
-	@CollectionTable(name = "TELEFONE")
+	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
-
+	
+	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	public Cliente() {
-
+		
 	}
 
-	public List<Endereco> getEndreco() {
-		return endreco;
+	
+
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = tipo;
+	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
 
-	public void setEndreco(List<Endereco> endreco) {
-		this.endreco = endreco;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
 	}
 
 	public Set<String> getTelefones() {
@@ -55,15 +81,6 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
-	public Cliente(Integer id, String name, String email, String cpfOuCnpj, TipoCliente tipo) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -72,12 +89,12 @@ public class Cliente implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getEmail() {
@@ -128,5 +145,7 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
 }
