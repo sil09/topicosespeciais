@@ -2,43 +2,48 @@ package fvs.edu.br.topicos.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import fvs.edu.br.topicos.enums.EstadoPagamento;
 
-public class PagamentoComBoleto extends Pagamento { 
+@Entity
+public class PagamentoComBoleto extends Pagamento{
+
 	private static final long serialVersionUID = 1L;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dataVencimento;
+	private Date dateDeVencimento;
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dataPagamento;
-
-public PagamentoComBoleto(){
+	private Date dataDePagamento;
 	
-}
+	public PagamentoComBoleto () {
+		
+	}
 
-public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataVencimento, Date dataPagamento) {
-	super(id, estado, pedido);
-	this.dataPagamento = dataPagamento;
-	this.dataVencimento = dataVencimento;
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataDeVencimento, Date dataDePagamento) {
+		super(id, estado, pedido);
+		this.dateDeVencimento = dataDeVencimento;
+		this.dataDePagamento = dataDePagamento;
+	}
+
+	public Date getDateDeVencimento() {
+		return dateDeVencimento;
+	}
+
+	public void setDateDeVencimento(Date dateDeVencimento) {
+		this.dateDeVencimento = dateDeVencimento;
+	}
+
+	public Date getDataDePagamento() {
+		return dataDePagamento;
+	}
+
+	public void setDataDePagamento(Date dataDePagamento) {
+		this.dataDePagamento = dataDePagamento;
+	}
 	
-}
-
-public Date getDataVencimento() {
-	return dataVencimento;
-}
-
-public void setDataVencimento(Date dataVencimento) {
-	this.dataVencimento = dataVencimento;
-}
-
-public Date getDataPagamento() {
-	return dataPagamento;
-}
-
-public void setDataPagamento(Date dataPagamento) {
-	this.dataPagamento = dataPagamento;
-}
+	
 
 }
