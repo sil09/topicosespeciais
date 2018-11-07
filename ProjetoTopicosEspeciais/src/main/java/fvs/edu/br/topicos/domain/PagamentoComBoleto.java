@@ -10,38 +10,39 @@ import fvs.edu.br.topicos.enums.EstadoPagamento;
 
 @Entity
 public class PagamentoComBoleto extends Pagamento{
-
 	private static final long serialVersionUID = 1L;
 	
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dateDeVencimento;
+	private Date dataVencimento;
 	@JsonFormat(pattern="dd/MM/yyyy")
-	private Date dataDePagamento;
+	private Date dataPagamento;
 	
-	public PagamentoComBoleto () {
+	public PagamentoComBoleto() {
 		
 	}
 
-	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido, Date dataDeVencimento, Date dataDePagamento) {
+	public PagamentoComBoleto(Integer id, EstadoPagamento estado, Pedido pedido
+	,Date dataVencimento, Date dataPagamento)
+	{
 		super(id, estado, pedido);
-		this.dateDeVencimento = dataDeVencimento;
-		this.dataDePagamento = dataDePagamento;
+		this.dataPagamento = dataPagamento;
+		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDateDeVencimento() {
-		return dateDeVencimento;
+	public Date getDataVencimento() {
+		return dataVencimento;
 	}
 
-	public void setDateDeVencimento(Date dateDeVencimento) {
-		this.dateDeVencimento = dateDeVencimento;
+	public void setDataVencimento(Date dataVencimento) {
+		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataDePagamento() {
-		return dataDePagamento;
+	public Date getDataPagamento() {
+		return dataPagamento;
 	}
 
-	public void setDataDePagamento(Date dataDePagamento) {
-		this.dataDePagamento = dataDePagamento;
+	public void setDataPagamento(Date dataPagamento) {
+		this.dataPagamento = dataPagamento;
 	}
 	
 	
